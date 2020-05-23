@@ -19,12 +19,12 @@ def test_send_message():
         def recieve_method(self, message, x):
             self.status = "recieved: {} {}".format(message, x)
 
-    mr = MyReciever()
+    mr1 = MyReciever()
 
-    mh.add_reciever(mr.recieve_method, "HELLO")
+    mh.add_reciever(mr1.recieve_method, "HELLO")
 
-    assert mr.status == "waiting"
+    assert mr1.status == "waiting"
 
     mh.send_message("HELLO", "WORLD")
 
-    assert mr.status == "recieved: HELLO WORLD"
+    assert mr1.status == "recieved: HELLO WORLD"
