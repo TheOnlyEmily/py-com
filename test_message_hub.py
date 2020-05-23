@@ -7,33 +7,35 @@ def test_init():
 
     assert mh._reciever_table == {"HELLO":[], "GOODBYE":[]}
 
-def test_send_message():
-    POSSIBLE_MESSAGES = ["HELLO", "GOODBYE"]
-    mh = MessageHub(POSSIBLE_MESSAGES)
+class TestSendMessage():
 
-    class MyReciever:
+    def test_two_recievers_two_messages(self):
+        POSSIBLE_MESSAGES = ["HELLO", "GOODBYE"]
+        mh = MessageHub(POSSIBLE_MESSAGES)
 
-        def __init__(self):
-            self.status = "waiting"
+        class MyReciever:
 
-        def recieve_method(self, message, x):
-            self.status = "recieved: {} {}".format(message, x)
+            def __init__(self):
+                self.status = "waiting"
 
-    mr1 = MyReciever()
-    mr2 = MyReciever()
+            def recieve_method(self, message, x):
+                self.status = "recieved: {} {}".format(message, x)
 
-    mh.add_reciever(mr1.recieve_method, "HELLO")
-    mh.add_reciever(mr2.recieve_method, "GOODBYE")
+        mr1 = MyReciever()
+        mr2 = MyReciever()
 
-    assert mr1.status == "waiting"
-    assert mr2.status == "waiting"
+        mh.add_reciever(mr1.recieve_method, "HELLO")
+        mh.add_reciever(mr2.recieve_method, "GOODBYE")
 
-    mh.send_message("HELLO", "WORLD")
+        assert mr1.status == "waiting"
+        assert mr2.status == "waiting"
 
-    assert mr1.status == "recieved: HELLO WORLD"
-    assert mr2.status == "waiting"
+        mh.send_message("HELLO", "WORLD")
 
-    mh.send_message("GOODBYE", "EVENTS")
+        assert mr1.status == "recieved: HELLO WORLD"
+        assert mr2.status == "waiting"
 
-    assert mr1.status == "recieved: HELLO WORLD"
-    assert mr2.status == "recieved: GOODBYE EVENTS"
+        mh.send_message("GOODBYE", "EVENTS")
+
+        assert mr1.status == "recieved: HELLO WORLD"
+        assert mr2.status == "recieved: GOODBYE EVENTS"
