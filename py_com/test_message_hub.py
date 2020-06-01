@@ -1,4 +1,4 @@
-from message_hub import MessageHub
+from py_com.message_hub import MessageHub
 
 
 def test_init():
