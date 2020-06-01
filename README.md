@@ -7,5 +7,5 @@ situations, and has the following limits:
 
     1. Python's recursion limit: chains of messages can only be as long
        as Python's recursion limit will allow.
-    1. Long chains of messages may cause significant slow down, as 
+    2. Long chains of messages may cause significant slow down, as 
        py-com does not utilize multi tasking of any kind. 
