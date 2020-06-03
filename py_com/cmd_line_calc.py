@@ -23,4 +23,5 @@ calc_hub.add_reciever(calculate_result, "INPUT")
 calc_hub.add_reciever(display_answer, "ANSWER")
 
 if __name__ == "__main__":
-    calc_hub.send_message("GET_INPUT")
+    while True:
+        calc_hub.send_message("GET_INPUT")
