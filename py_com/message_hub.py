@@ -75,6 +75,7 @@ class MessageHub:
             TypeError: When the length message, combined with the
             message_info, is greater than the number of arguments the
             function/method recieveing them can accomidate.
+            RecursionError: If a message passing chain gets too long.
         """
         recievers = self._reciever_table[message]
         full_message = (message,) + message_info
