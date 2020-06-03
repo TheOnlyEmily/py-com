@@ -17,7 +17,6 @@ def calculate_result(message, equation):
 def display_answer(message, answer):
     print("The answer is: ", answer)
     input("Press any key to continue.")
-    calc_hub.send_message("GET_INPUT")
 
 calc_hub.add_reciever(get_cli_input, "GET_INPUT")
 calc_hub.add_reciever(calculate_result, "INPUT")

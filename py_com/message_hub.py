@@ -44,7 +44,7 @@ class MessageHub:
             messages that can be sent/recieved.
         """
         self._reciever_table = {m:[] for m in acceptable_messages}
-
+        
     def add_reciever(self, rec_func, message):
         """
         Adds a function that can recieve a type of message message.
