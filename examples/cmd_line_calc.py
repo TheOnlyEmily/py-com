@@ -1,4 +1,4 @@
-from message_hub import MessageHub
+from py_com.message_hub import MessageHub
 
 
 calc_hub = MessageHub(["GET_INPUT", "INPUT", "ANSWER"])
