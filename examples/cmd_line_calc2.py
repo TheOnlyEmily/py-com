@@ -8,18 +8,19 @@ calc_hub = MessageHub(["CHECK", "ERROR", "VALID", "ANSWER"])
 
 def get_input():
     equation = input("Enter simple equation: ")
-    calc_hub.send_message("CHECK", equation)
+    MessageHub.get_instance().send_message("CHECK", equation)
 
 def check_input(message, equation):
     re_prog = re.compile(r"[0-9]+ *[\+|\-|\*|\/] *[0-9]+")
+    m_hub = MessageHub.get_instance()
     if re_prog.match(equation):
-        calc_hub.send_message("VALID", equation)
+        m_hub.send_message("VALID", equation)
     else:
-        calc_hub.send_message("ERROR", equation)
+        m_hub.send_message("ERROR", equation)
 
 def process_equation(message, equation):
     answer = eval(equation)
-    calc_hub.send_message("ANSWER", answer)
+    MessageHub.get_instance().send_message("ANSWER", answer)
 
 def display_error(message, equation):
     print("Error! {} is not a simple equation!".format(equation))
