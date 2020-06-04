@@ -50,6 +50,17 @@ class MessageHub:
 
     @classmethod
     def get_instance(clss):
+        """
+        Allows access to the MessageHub instance without reffering 
+        to it explicitely. 
+
+        Returns: 
+            instance (MessageHub): An instance of the MessageHub class.
+
+        Raises:
+            InstanceNotFoundError: If an instance of MessageHub hasn't
+            been instantiated.
+        """
         if clss.__global_instance:
             return clss.__global_instance
         raise InstanceNotFoundError("__init__ not called")
