@@ -52,6 +52,7 @@ class MessageHub:
     def get_instance(clss):
         if clss.__global_instance:
             return clss.__global_instance
+        raise InstanceNotFoundError()
         
     def add_reciever(self, rec_func, message):
         """
