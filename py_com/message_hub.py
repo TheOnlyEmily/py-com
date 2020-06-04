@@ -50,7 +50,8 @@ class MessageHub:
 
     @classmethod
     def get_instance(clss):
-        return clss.__global_instance
+        if clss.__global_instance:
+            return clss.__global_instance
         
     def add_reciever(self, rec_func, message):
         """
