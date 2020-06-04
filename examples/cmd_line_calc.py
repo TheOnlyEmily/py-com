@@ -1,3 +1,4 @@
+from context import py_com
 from py_com.message_hub import MessageHub
 
 
