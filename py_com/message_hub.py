@@ -89,3 +89,7 @@ class MessageHub:
         full_message = (message,) + message_info
         for r in recievers:
             r(*full_message)
+
+
+class InstanceNotFoundError(Exception):
+    pass
