@@ -47,7 +47,7 @@ class MessageHub:
         
     def add_reciever(self, rec_func, message):
         """
-        Adds a function that can recieve a type of message message.
+        Adds a function that can recieve a type of message.
 
         Args:
             rec_func (function | method): The function that the message and
