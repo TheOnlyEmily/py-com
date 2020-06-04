@@ -34,6 +34,8 @@ Example:
 
 class MessageHub:
 
+    __global_instance = None
+
     def __init__(self, acceptable_messages):
         """
         Creates a new message hub, by specifying a list of valid
@@ -44,6 +46,11 @@ class MessageHub:
             messages that can be sent/recieved.
         """
         self._reciever_table = {m:[] for m in acceptable_messages}
+        MessageHub.__global_instance = self
+
+    @classmethod
+    def get_instance(clss):
+        return clss.__global_instance
         
     def add_reciever(self, rec_func, message):
         """
