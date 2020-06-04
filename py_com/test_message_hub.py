@@ -1,4 +1,5 @@
-from py_com.message_hub import MessageHub
+import pytest
+from py_com.message_hub import MessageHub, InstanceNotFoundError
 
 
 def test_init():
@@ -7,6 +8,15 @@ def test_init():
 
     assert mh._reciever_table == {"HELLO":[], "GOODBYE":[]}
 
+def test_get_instance():
+    with pytest.raises(InstanceNotFoundError):
+        MessageHub.get_instance()
+    
+    POSSIBLE_MESSAGES = ["HELLO", "GOODBYE"]
+    mh = MessageHub(POSSIBLE_MESSAGES)
+
+    assert MessageHub.get_instance() is mh 
+    
 
 class TestSendMessage():
 
